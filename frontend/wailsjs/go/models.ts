@@ -51,7 +51,17 @@ export namespace models {
 	    date: any;
 	    ticker: string;
 	    marketSentiment: number;
-	    sectorSentiment: number;
+	    basicMaterials: number;
+	    communicationServices: number;
+	    consumerCyclical: number;
+	    consumerDefensive: number;
+	    energy: number;
+	    financial: number;
+	    healthcare: number;
+	    industrials: number;
+	    realEstate: number;
+	    technology: number;
+	    utilities: number;
 	    stockSentiment: number;
 	    pattern: string;
 	    enthusiasmRating: number;
@@ -66,7 +76,17 @@ export namespace models {
 	        this.date = this.convertValues(source["date"], null);
 	        this.ticker = source["ticker"];
 	        this.marketSentiment = source["marketSentiment"];
-	        this.sectorSentiment = source["sectorSentiment"];
+	        this.basicMaterials = source["basicMaterials"];
+	        this.communicationServices = source["communicationServices"];
+	        this.consumerCyclical = source["consumerCyclical"];
+	        this.consumerDefensive = source["consumerDefensive"];
+	        this.energy = source["energy"];
+	        this.financial = source["financial"];
+	        this.healthcare = source["healthcare"];
+	        this.industrials = source["industrials"];
+	        this.realEstate = source["realEstate"];
+	        this.technology = source["technology"];
+	        this.utilities = source["utilities"];
 	        this.stockSentiment = source["stockSentiment"];
 	        this.pattern = source["pattern"];
 	        this.enthusiasmRating = source["enthusiasmRating"];
@@ -98,6 +118,11 @@ export namespace models {
 	    sector: string;
 	    entryPrice: number;
 	    notes: string;
+	    // Go type: time
+	    expirationDate: any;
+	    strategyType: string;
+	    spreadType: string;
+	    direction: string;
 	
 	    static createFrom(source: any = {}) {
 	        return new Trade(source);
@@ -111,6 +136,10 @@ export namespace models {
 	        this.sector = source["sector"];
 	        this.entryPrice = source["entryPrice"];
 	        this.notes = source["notes"];
+	        this.expirationDate = this.convertValues(source["expirationDate"], null);
+	        this.strategyType = source["strategyType"];
+	        this.spreadType = source["spreadType"];
+	        this.direction = source["direction"];
 	    }
 	
 		convertValues(a: any, classs: any, asMap: boolean = false): any {

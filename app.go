@@ -131,3 +131,8 @@ func (a *App) GetTradesByTicker(ticker string) ([]*models.Trade, error) {
 func (a *App) GetAllTrades() ([]*models.Trade, error) {
 	return repositories.GetAllTrades()
 }
+
+// DeleteTrade deletes a trade
+func (a *App) DeleteTrade(id int) error {
+	return repositories.DeleteTrade(id)
+}

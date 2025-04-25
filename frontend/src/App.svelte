@@ -108,6 +108,7 @@
     --warning-color: #f39c12;
     --error-color: #e74c3c;
     --error-bg: #fadbd8;
+    --error-hover: #c0392b;
     --info-bg: #d6eaf8;
   }
   
@@ -134,6 +135,7 @@
     --warning-color: #fdcb6e;
     --error-color: #ff7675;
     --error-bg: rgba(255, 118, 117, 0.2);
+    --error-hover: #d63031;
     --info-bg: rgba(9, 132, 227, 0.2);
   }
 

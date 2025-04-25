@@ -103,7 +103,11 @@ func createTables() error {
 		ticker TEXT,
 		sector TEXT,
 		entry_price REAL,
-		notes TEXT
+		notes TEXT,
+		expiration_date TEXT,
+		strategy_type TEXT,
+		spread_type TEXT,
+		direction TEXT
 	)`)
 	if err != nil {
 		return fmt.Errorf("failed to create trades table: %w", err)
