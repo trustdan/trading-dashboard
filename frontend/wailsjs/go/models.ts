@@ -1,7 +1,7 @@
 export namespace models {
 	
 	export class RiskAssessment {
-	    id: number;
+	    id: string;
 	    // Go type: time
 	    date: any;
 	    emotional: number;
@@ -46,7 +46,7 @@ export namespace models {
 		}
 	}
 	export class StockRating {
-	    id: number;
+	    id: string;
 	    // Go type: time
 	    date: any;
 	    ticker: string;
@@ -111,7 +111,7 @@ export namespace models {
 		}
 	}
 	export class Trade {
-	    id: number;
+	    id: string;
 	    // Go type: time
 	    entryDate: any;
 	    ticker: string;

@@ -1,32 +1,6 @@
 @echo off
 setlocal enabledelayedexpansion
 
-REM Check if sqlite3.dll exists in the current directory
-if not exist "%~dp0\sqlite3.dll" (
-    echo SQLite3 DLL not found. Downloading...
-    
-    REM Download SQLite3 DLL from the official site
-    powershell -Command "Invoke-WebRequest -Uri 'https://www.sqlite.org/2023/sqlite-dll-win64-x64-3420000.zip' -OutFile '%TEMP%\sqlite3.zip'"
-    
-    REM Check if download was successful
-    if %ERRORLEVEL% NEQ 0 (
-        echo Failed to download SQLite3 DLL. Exiting.
-        exit /b 1
-    ) else (
-        REM Extract the DLL
-        powershell -Command "Expand-Archive -Path '%TEMP%\sqlite3.zip' -DestinationPath '%TEMP%\sqlite3' -Force"
-        
-        REM Copy the DLL to the current directory
-        copy "%TEMP%\sqlite3\sqlite3.dll" "%~dp0\sqlite3.dll"
-        
-        REM Clean up temporary files
-        del "%TEMP%\sqlite3.zip"
-        rmdir /s /q "%TEMP%\sqlite3"
-        
-        echo SQLite3 DLL downloaded successfully.
-    )
-)
-
 REM Find the installed folder
 echo Looking for the installation directory...
 set "PRODUCT_NAME=Trading Dashboard"
@@ -50,15 +24,11 @@ echo Creating launcher script...
     echo @echo off
     echo setlocal enabledelayedexpansion
     echo.
-    echo REM Set environment variable
-    echo set CGO_ENABLED=1
-    echo.
     echo REM Change to the application directory
     echo cd /d "%%~dp0"
     echo.
     echo REM Create log file
     echo echo Starting application at %%date%% %%time%% ^> "%%~dp0trading-dashboard-log.txt"
-    echo echo CGO_ENABLED=%%CGO_ENABLED%% ^>^> "%%~dp0trading-dashboard-log.txt"
     echo echo Working directory: %%CD%% ^>^> "%%~dp0trading-dashboard-log.txt"
     echo.
     echo REM List files in directory
@@ -79,9 +49,6 @@ echo Creating launcher script...
 ) > "%~dp0run-trading-dashboard.bat"
 
 echo Copying files to installation directory...
-REM Copy SQLite DLL to installation folder
-copy /Y "%~dp0sqlite3.dll" "!INSTALL_DIR!\sqlite3.dll"
-
 REM Copy launcher script to installation folder
 copy /Y "%~dp0run-trading-dashboard.bat" "!INSTALL_DIR!\run-trading-dashboard.bat"
 

@@ -4,7 +4,7 @@ import "time"
 
 // RiskAssessment represents a daily risk assessment entry
 type RiskAssessment struct {
-	ID           int       `json:"id"`
+	ID           string    `json:"id"`
 	Date         time.Time `json:"date"`
 	Emotional    int       `json:"emotional"`    // Range: -3 to +3
 	Fomo         int       `json:"fomo"`         // Range: -3 to +3

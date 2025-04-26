@@ -242,3 +242,42 @@ wails build "$@"
 ```
 
 Make the script executable: `chmod +x build.sh`
+
+## Database Migration: SQLite to BadgerDB
+
+The application has been migrated from SQLite to BadgerDB, which brings several benefits:
+
+- **Pure Go Implementation**: No more CGO dependencies or C compiler requirements
+- **Cross-platform Compatibility**: Works seamlessly across Windows, macOS, and Linux
+- **No Admin Rights Required**: Runs without elevated permissions
+- **Simpler Installation**: No external DLLs needed
+- **Key-Value Storage**: Efficient storage using prefixed keys and JSON values
+
+### Building the Application
+
+Building the application is now much simpler:
+
+1. **Basic Build**:
+   ```
+   wails build
+   ```
+
+2. **Build with Installer**:
+   ```
+   wails build --nsis
+   ```
+   or
+   ```
+   build.bat --installer
+   ```
+
+3. **Debug Build**:
+   ```
+   wails build -debug -devtools
+   ```
+   or
+   ```
+   build.bat --debug
+   ```
+
+For more information on how the BadgerDB implementation works, refer to the code in `pkg/database/database.go`.

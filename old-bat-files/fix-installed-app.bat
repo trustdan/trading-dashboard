@@ -33,42 +33,16 @@ if not exist "!INSTALL_DIR!" (
 
 echo Found installation at: !INSTALL_DIR!
 
-REM Download SQLite DLL
-echo Downloading SQLite DLL...
-powershell -Command "Invoke-WebRequest -Uri 'https://www.sqlite.org/2023/sqlite-dll-win64-x64-3430000.zip' -OutFile '%TEMP%\sqlite3.zip' -UseBasicParsing"
-
-REM Check if download was successful
-if %ERRORLEVEL% NEQ 0 (
-    echo Failed to download SQLite DLL.
-    exit /b 1
-)
-
-REM Extract the DLL
-echo Extracting SQLite DLL...
-powershell -Command "Expand-Archive -Path '%TEMP%\sqlite3.zip' -DestinationPath '%TEMP%\sqlite3' -Force"
-
-REM Copy the DLL to the installation directory
-echo Copying SQLite DLL to installation directory...
-copy "%TEMP%\sqlite3\sqlite3.dll" "!INSTALL_DIR!\sqlite3.dll"
-
-REM Clean up
-del "%TEMP%\sqlite3.zip"
-rmdir /s /q "%TEMP%\sqlite3"
-
 REM Create proper launcher script
 echo Creating launcher script...
 (
     echo @echo off
     echo setlocal enabledelayedexpansion
     echo.
-    echo REM Set environment variables
-    echo set CGO_ENABLED=1
-    echo.
     echo cd /d "%%~dp0"
     echo.
     echo REM Create log file
     echo echo Starting application at %%date%% %%time%% ^> "%%~dp0trading-dashboard-log.txt"
-    echo echo CGO_ENABLED=%%CGO_ENABLED%% ^>^> "%%~dp0trading-dashboard-log.txt"
     echo echo Working directory: %%CD%% ^>^> "%%~dp0trading-dashboard-log.txt"
     echo.
     echo REM List files

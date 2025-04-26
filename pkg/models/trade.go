@@ -4,7 +4,7 @@ import "time"
 
 // Trade represents a trading position
 type Trade struct {
-	ID             int       `json:"id"`
+	ID             string    `json:"id"`
 	EntryDate      time.Time `json:"entryDate"`
 	Ticker         string    `json:"ticker"`
 	Sector         string    `json:"sector"`

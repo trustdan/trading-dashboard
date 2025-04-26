@@ -4,7 +4,7 @@ import "time"
 
 // StockRating represents a rating for a stock
 type StockRating struct {
-	ID                    int       `json:"id"`
+	ID                    string    `json:"id"`
 	Date                  time.Time `json:"date"`
 	Ticker                string    `json:"ticker"`
 	MarketSentiment       int       `json:"marketSentiment"`       // Range: -3 to +3
