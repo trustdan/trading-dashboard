@@ -9,5 +9,15 @@
   "author": {
     "name": "trustdan",
     "email": "danieltuckerrust@gmail.com"
-  }
+  },
+  "nsisIncludeDir": "build/windows/nsis",
+  "info": {
+    "companyName": "TrustDan",
+    "productName": "Trading Dashboard", 
+    "productVersion": "1.0.0"
+  },
+  "includeFiles": [
+    "sqlite3.dll",
+    "run-trading-dashboard.bat"
+  ]
 }

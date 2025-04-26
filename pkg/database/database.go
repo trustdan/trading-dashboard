@@ -15,8 +15,16 @@ var DB *sql.DB
 
 // Initialize sets up the database connection
 func Initialize() error {
-	// Ensure data directory exists
-	dataDir := "./data"
+	// Get user-specific app data directory instead of using a relative path
+	appDataDir, err := os.UserConfigDir()
+	if err != nil {
+		log.Printf("Warning: Could not get user config directory: %v", err)
+		// Fall back to relative path if user directory can't be determined
+		appDataDir = "."
+	}
+
+	// Create a specific subdirectory for our application in the user config directory
+	dataDir := filepath.Join(appDataDir, "TradingDashboard", "data")
 	if err := os.MkdirAll(dataDir, 0755); err != nil {
 		return fmt.Errorf("failed to create data directory: %w", err)
 	}
@@ -24,7 +32,6 @@ func Initialize() error {
 	dbPath := filepath.Join(dataDir, "trading.db")
 	log.Printf("Initializing database at: %s", dbPath)
 
-	var err error
 	DB, err = sql.Open("sqlite3", dbPath)
 	if err != nil {
 		return fmt.Errorf("failed to open database: %w", err)
